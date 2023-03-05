@@ -1,3 +1,4 @@
+/* The first css here is the react app default css */
 .App {
   text-align: center;
 }
@@ -37,17 +38,20 @@
   }
 }
 
-/*My css starts here*/
+/* My changes start here */
+/* Set the place for the login elements */
 #loginDiv {
   align-items: center;
   margin-top: 10%;
 }
 
+/* Set the place for the register elements */
 #registerDiv {
   align-items: center;
   margin-top: 10%;
 }
 
+/* Set the place for the post elements */
 #postDiv {
   align-items: center;
   margin-top: 10%;

@@ -7,10 +7,13 @@ import Register from './components/Register';
 import MakePost from "./components/Post"
 import {useState} from "react"
 
+// This function renders the app
 function App() {
   const [user, setUser] = useState({})
   const [jwt, setJwt] = useState(false)
 
+  // Here I have set all the views for the app and what each of them shows
+  // From here I also pass on the jwt, setJwt, user and setUser variables to use in other parts of the app  
   return (
     <Router>
       <div className="App">

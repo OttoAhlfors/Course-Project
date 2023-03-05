@@ -2,6 +2,7 @@ import * as React from 'react';
 import {useState, useEffect} from "react"
 import {Modal, Button, Box, Grid, CardActions, CardContent, List, ListItem, TextField, Typography, Card} from "@mui/material";
 
+// This style is used for the popup Modals for the comments
 const style = {
     position: 'absolute',
     top: '50%',
@@ -14,7 +15,7 @@ const style = {
     p: 4,
 };
     
-
+// This is used to render the homepage and it also handels posting comments
 const Home = ({jwt,  setJwt, user, setUser}) => {
     let [post, setPost] = useState([])
     let [commentToSend, setCommentToSend] = useState({})
@@ -22,12 +23,15 @@ const Home = ({jwt,  setJwt, user, setUser}) => {
     let [open, setOpen] = useState(false);
     let [postId, setPostId] = useState({})
 
+    // This function opens the comments Modal
     const handleOpen = (event) => {
         setPostId({postId: event.target.id})
         setOpen(true)}
-
+    
+    // This function closes the comments Modal
     const handleClose = () => setOpen(false)
 
+    // This function gets the posts from the back-end
     useEffect(() => {
         fetch("/api/post")
         .then(response => response.json())
@@ -35,10 +39,12 @@ const Home = ({jwt,  setJwt, user, setUser}) => {
         .catch(err => console.log(err))
     },[])
 
+    // This function determines the text and postId variables for a the comment being sent
     const handleChange = (event) => {
         setCommentToSend({text: event.target.value, postId: event.target.id})
     }
 
+    // This function sends the comment to the back-end
     const handleComment = (event) => {
         if(event.key === "Enter") {
             event.preventDefault()
@@ -47,12 +53,14 @@ const Home = ({jwt,  setJwt, user, setUser}) => {
                 headers: {
                     "Content-type": "application/json"
                 },
+                // The body here is the text and postId defined earlier
                 body: JSON.stringify(commentToSend),
                 mode: "cors"
             })
         }
     }
 
+    // This gets the comments from the back-end
     useEffect(() => {
         fetch("/api/comment")
         .then(response => response.json())
@@ -60,9 +68,12 @@ const Home = ({jwt,  setJwt, user, setUser}) => {
         .catch(err => console.log(err))
     },[])
 
+
     return (
         <div>
             <Typography variant="h1">InstaCode</Typography>
+
+                {/* Here we map the posts that we have gotten from the back-end each item is a post each post is then made into a card */}
                 {post.map((item) => (
                 <Card key={item._id} sx={{
                     border: 1}}>
@@ -70,6 +81,8 @@ const Home = ({jwt,  setJwt, user, setUser}) => {
                         <h2>Post</h2>
                         <Typography variant="body2">{item.text}</Typography>
                     </CardContent>
+
+                    {/* If jwt token is true (user is logged in) text field in which you can write a comment to a post is visible if false then Error login to comment is shown */}
                     <CardActions>
                         <Grid container justifyContent="center" >
                             <Box sx={{
@@ -85,11 +98,15 @@ const Home = ({jwt,  setJwt, user, setUser}) => {
                     </CardActions>
                 </Card>
             ))}
+
+            {/* This Modal pops up when "Show comments" button is clicked it contains all the comments for that post*/}
             <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
                 <Card sx={style}>
                 <CardContent>
                     <List>
                         <h3>Comments</h3>
+                        
+                        {/* The conditional rendering here is used to only show the coments where the postId matches currently examined post */}
                         {comment.map((content) => (
                             content.postId === postId.postId &&
                                 (<ListItem key={content._id} variant="body3">{content.text}</ListItem>)

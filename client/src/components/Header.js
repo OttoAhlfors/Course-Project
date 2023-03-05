@@ -5,7 +5,7 @@ import {AppBar, Box, Toolbar, Button} from '@mui/material';
 // This component is used to render the AppBar to all the pages
 export default function Header({jwt,  setJwt, user, setUser}) {
 
-  // Each button in the header is asigned
+  // Each button in the header is asigned a component link to a page of the app
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">

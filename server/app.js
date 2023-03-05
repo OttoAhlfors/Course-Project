@@ -8,12 +8,13 @@ require("dotenv").config();
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-//var postsRouter = require("./routes/posts")
 
 var app = express();
 
+// MongoDB address used for the database 
 const mongoDB = "mongodb://127.0.0.1:27017/project";
 
+// Connect to the database
 mongoose.connect(mongoDB);
 mongoose.Promise = Promise;
 const db = mongoose.connection;
@@ -35,6 +36,5 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/index', indexRouter);
 app.use('/', usersRouter);
-//app.use("/post", postsRouter)
 
 module.exports = app;

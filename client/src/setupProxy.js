@@ -1,3 +1,4 @@
+// Here I setup the proxy server http://lovalhost:1234 for the back-end
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
 module.exports = function(app) {

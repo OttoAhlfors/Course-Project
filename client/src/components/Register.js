@@ -2,6 +2,7 @@ import { Button, TextField, Typography } from "@mui/material"
 
 const Register = (({jwt,  setJwt, user, setUser}) => {
 
+    // This sends the register info to the back-end
     const submit = (e) => {
         e.preventDefault()
         fetch("/api/register", {
@@ -14,6 +15,7 @@ const Register = (({jwt,  setJwt, user, setUser}) => {
         })
     }
 
+    // Register info (username and password) is set here
     const handleRegister = (e) => {
         setUser({...user, [e.target.id]: e.target.value})
     }

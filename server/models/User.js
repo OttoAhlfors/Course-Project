@@ -1,3 +1,4 @@
+// Model for the user database
 const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
