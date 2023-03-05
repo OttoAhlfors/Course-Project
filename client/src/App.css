@@ -40,7 +40,17 @@
 /*My css starts here*/
 #loginDiv {
   align-items: center;
-  margin-top: 30%;
+  margin-top: 10%;
+}
+
+#registerDiv {
+  align-items: center;
+  margin-top: 10%;
+}
+
+#postDiv {
+  align-items: center;
+  margin-top: 10%;
 }
 
 .input {

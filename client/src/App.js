@@ -4,7 +4,7 @@ import Header from "./components/Header"
 import Login from "./components/Login"
 import Home from "./components/Home"
 import Register from './components/Register';
-import MakePost from "./components/MakePost"
+import MakePost from "./components/Post"
 import {useState} from "react"
 
 function App() {
@@ -17,16 +17,16 @@ function App() {
         <Header/>
         <Routes>
           <Route path="/" element={
-            <Home jwt={jwt} setjwt={setJwt}/>
+            <Home jwt={jwt} setJwt={setJwt} user={user} setUser={setUser}/>
           }/>
           <Route path="/login" element={
             <Login jwt={jwt} setJwt={setJwt} user={user} setUser={setUser}/>
           }/>
           <Route path="/register" element={
-            <Register jwt={jwt} setjwt={setJwt}/>
+            <Register jwt={jwt} setJwt={setJwt} user={user} setUser={setUser}/>
           }/>
           <Route path="/post" element={
-            <MakePost jwt={jwt} setjwt={setJwt}/>
+            <MakePost jwt={jwt} setJwt={setJwt} user={user} setUser={setUser}/>
           }/>
         </Routes>
       </div>

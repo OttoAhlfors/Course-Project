@@ -1,13 +1,10 @@
-import {useState} from "react"
+import { Button, TextField, Typography } from "@mui/material"
 
-const Register = (() => {
-    const [user, setUser] = useState({})
+const Register = (({jwt,  setJwt, user, setUser}) => {
 
     const submit = (e) => {
         e.preventDefault()
-        console.log("Working...")
-        console.log(user)
-        fetch("/api/register/", {
+        fetch("/api/register", {
             method: "POST",
             headers: {
                 "Content-type": "application/json"
@@ -18,16 +15,19 @@ const Register = (() => {
     }
 
     const handleRegister = (e) => {
-        setUser({...user, [e.target.name]: e.target.value})
+        setUser({...user, [e.target.id]: e.target.value})
     }
 
     return (
+        <div>
+        <Typography variant="h2">Register</Typography>
         <div id="registerDiv">
             <form onSubmit={submit} onChange={handleRegister}>
-                <input id="username" type="string" name="username"></input>
-                <input id="password" type="string" name="password"></input>
-                <input id="submit" type="submit"></input>
+                <TextField required id="username" type="string" label="Username"></TextField>
+                <TextField required id="password" type="string" label="Password"></TextField>
+                <Button id="submit" type="submit">Register</Button>
             </form>
+        </div>
         </div>
     )
 })

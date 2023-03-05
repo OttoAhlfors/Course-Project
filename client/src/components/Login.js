@@ -1,11 +1,11 @@
 import { Buffer } from "buffer"
+import {Button, TextField, Typography} from "@mui/material"
 
-function Login({jwt,  setJwt, user, setUser}) {
+function Login({jwt, setJwt, user, setUser}) {
 
     const submit = (event) => {
         event.preventDefault()
-        console.log("Working...")
-        fetch("/api/login/", {
+        fetch("/api/login", {
             method: "POST",
             headers: {
                 "Content-type": "application/json"
@@ -16,31 +16,27 @@ function Login({jwt,  setJwt, user, setUser}) {
         .then(response => response.json())
         .then((data) => {
             if (data.token) {
-                console.log(data)
                 setJwt(true)
                 setUser(JSON.parse(Buffer.from(data.token.split(".")[1], "base64").toString()))
-                console.log(jwt)
-            } else {
-                console.log(data)
             }
         })
     }
 
     const handleLogin = (event) => {
-        setUser({...user, [event.target.id]:event.target.value})
+        setUser({...user, [event.target.id]: event.target.value, [event.target.id]: event.target.value})
+        console.log(user)
     }
 
-    console.log(user)
-
     return (
-        <div id="loginDiv">
-            <form onSubmit={submit} onChange={handleLogin}>
-                <input id="username" label="Username" type="string"></input>
-                <input id="password" label="Password" type="string"></input>
-                <input id="submit" type="submit"></input>
-            </form>
-            {jwt.jwt === true &&
-            (<p>Login successfull</p>)}
+        <div>
+            <Typography id="login-typo" variant="h2">Login</Typography>
+            <div id="loginDiv">
+                <form onSubmit={submit} onChange={handleLogin}>
+                    <TextField required id="username" label="Username" type="string"></TextField>
+                    <TextField required id="password" label="Password" type="string"></TextField>
+                    <Button id="submit" type="submit">Login</Button>
+                </form>
+            </div>
         </div>
     )
 }
