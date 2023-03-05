@@ -12,7 +12,7 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
-const mongoDB = "mongodb://127.0.0.1:27017/testdb";
+const mongoDB = "mongodb://127.0.0.1:27017/project";
 
 mongoose.connect(mongoDB);
 mongoose.Promise = Promise;
