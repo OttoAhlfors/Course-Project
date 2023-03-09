@@ -11,3 +11,6 @@ All commands are given in the “…/Course Project-master” folder and can be 
 Before running the app make sure to connect to "mongodb://127.0.0.1:27017/project" using for example MongoDBCompass. 
 
 Execute command “npm run install” then open another terminal in “…/Course Project-master”
+
+Run server with: SET NODE_ENV=production& npm run dev:server (on windows) 
+Run server with: NODE_ENV=development npm run dev:server (on linux) 
